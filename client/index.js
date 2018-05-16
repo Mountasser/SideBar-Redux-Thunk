@@ -1,22 +1,35 @@
 
-import { Router, Route, browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
-import { Provider } from 'react-redux'
-import ReactDOM from 'react-dom'
-import React from 'react'
+import ConnectedApp from './components/App';
 
-import App from './containers/App'
-import configure from './store'
+import {itemsFetchData} from './actions/todos';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import {fetchDev} from './actions/todos'
+import App from './components/app';
+import reducers from './reducers/index_Reducer';
 
-const store = configure()
-const history = syncHistoryWithStore(browserHistory, store)
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
+// Wrap existing app in Provider - Step 2
+//console.log(createStoreWithMiddleware(reducers));
+//storestore.dispatch(itemsFetchData('http://www.mocky.io/v2/5afac4592e00005a002790e5'));
+const store = createStoreWithMiddleware(reducers);
+store.dispatch(fetchDev());
+console.log("------------------state Chaaaaange------------");
+console.log(store.getState());
+
+const render = () => {
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={App}>
-      </Route>
-    </Router>
-  </Provider>,
-  document.getElementById('root')
-)
+
+  <ConnectedApp/>
+  
+  </Provider>,document.getElementById("app")
+);
+};
+render();
+
+export default store;

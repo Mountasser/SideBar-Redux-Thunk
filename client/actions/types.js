@@ -1,0 +1,9 @@
+export const ITEMS_HAS_ERRORED = 'ITEMS_HAS_ERRORED';
+
+export const LOAD_STATE = 'LOAD_STATE';
+
+export const LOADING_ITEM = 'LOADING_ITEM';
+export const SELECT_API_ITEM = 'SELECT_API_ITEM';
+
+export const SELECT_SECTION = 'SELECT_SECTION';
+
