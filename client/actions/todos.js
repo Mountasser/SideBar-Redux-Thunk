@@ -2,33 +2,6 @@
 import * as types from './types';
 let axios = require('axios');
 
-export const itemsFetchData = (url)=>{
-    const  Endpoints=[
-        {id:1,titre:"toto",Leafs:
-                               [{index:1,title:"Leaf1-1"},
-                               {index:2,title:"Leaf1-2"}]},
-        {id:2,titre:"bobo",Leafs:
-                               [{index:1,title:"Leaf2-1"},
-                               {index:2,title:"Leaf2-2"}]},
-                              
-        {id:3,titre:"lolo",Leafs:
-                               [{index:1,title:"Leaf3-1"},
-                               {index:2,title:"Leaf3-2"}]}
-        ]
-console.log(url);
-    return (dispatch) => {
-        console.log(url);
-        dispatch(itemsIsLoading(true))
-        return axios.get(url)
-        /////////////
-       
-        .then((response) => response.json())
-        .then((items) => {dispatch(itemsFetchDataSuccess(Endpoints))
-            console.log(response);})
-            }
-        }
-            
-/////////////////////////////
 
     
 
@@ -40,23 +13,22 @@ console.log(url);
     }
     
 
-    export const itemsIsLoading = (flag) => {
-    {
-        type : types.LOADING_ITEM;
-        flag : flag;
-    }
-    
-    }
-
-    export function itemHasErrored(bool){
+    export let select_item = (id) => {
         return {
-            type :types.ITEMS_HAS_ERRORED,
-            hasErrored : bool
-        };
-    
-
+            type : types.SELECT_API_ITEM,
+            id:id
+        }
     }
-
+    
+    // reducer to indicate we have received all our data from the api
+    export let select_section = (id) => {
+        return {
+            type : types.SELECT_SECTION,
+            id:id
+        }
+    }
+    
+    
 
 //reducer to indicate that our api call has started
 export let startDevSearch = () => {

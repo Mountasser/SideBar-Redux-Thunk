@@ -57,7 +57,7 @@ export default class   AccordionItemBranch  extends React.Component {
       
       <AccordionItemLeaf  index={item.index}  section={item}  toggle={(acId) => this.toggleSection(acId)}
         
-      key={`acc-sec-${index}`} unq={`acc-sec-${index}`}  active={(this.state.activeSections && this.state.activeSections.lastIndexOf(`acc-sec-${index}`) !== -1)} children={item.Leafs}/>
+       classe={`acc-sec-${index}`}  active={(this.state.activeSections.lastIndexOf(`acc-sec-${index}`) !== -1)} children={item.Leafs}/>
     
       
     )    
@@ -69,9 +69,8 @@ export default class   AccordionItemBranch  extends React.Component {
 
   toggleSection(sectionId) {
     const newActive = Utils.toggleSection(
-      sectionId,
-      this.state.activeSections,
-      this.state.singleOpen);
+      sectionId,this.state.activeSections
+      );
 
     this.setState({
       activeSections: newActive

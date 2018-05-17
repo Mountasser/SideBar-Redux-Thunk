@@ -69,10 +69,10 @@ console.log(this.section);
   
     toggleSection() {
       const {
-        unq,
+      classe,
         toggle
       } = this.props;
-      toggle(unq);
+      toggle(classe);
     }
   
     toggleOpen(active) {
